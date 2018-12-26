@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TouchableOpacity,Image} from 'react-native';
+import {Platform, StyleSheet, Text, View, TouchableOpacity,Image,ActionSheetIOS} from 'react-native';
 import PhotoBrowser from 'react-native-photo-browser';
 
 export default class App extends Component<Props> {
@@ -28,12 +28,12 @@ export default class App extends Component<Props> {
                     caption: 'Grotto of the Madonna',
                     },
                     {
-                      photo: 'http://farm3.static.flickr.com/2667/4072710001_f36316ddc7_b.jpg',
+                      photo: 'https://dspncdn.com/a1/media/originals/e3/ba/fe/e3bafea9cf160061aafeb215824b4751.jpg',
                       caption: 'Broadchurch Scene',
                     },
                     {
                       photo:
-                        'http://farm3.static.flickr.com/2667/4072710001_f36316ddc7_b.jpg',
+                        'https://dspncdn.com/a1/media/originals/bf/c5/8d/bfc58dca85e651894c992c7ecc27c65b.jpg',
                         caption: 'Beautiful Eyes',
                     },
               ]
@@ -67,10 +67,12 @@ export default class App extends Component<Props> {
 
         deleteImageFile = () => {
         console.warn(this.state.mediaSelected);
+
         this.state.mediaSelected.forEach((file) =>{
-            let tempgalleryList = this.state.galleryList.filter(item => item.photo !== file);
-            this.setState({ galleryList : tempgalleryList })
-          })
+          this.setState(prevState => ({
+            galleryList : prevState.galleryList.filter(item => !prevState.mediaSelected.includes(item.photo)),
+          }));
+         })
         }
 
        renderDelete(){
@@ -121,7 +123,7 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1
+      flex: 1,
   },
 
 
