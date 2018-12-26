@@ -71,7 +71,7 @@ export default class App extends Component<Props> {
 
         deleteImageFile = () => {
         console.warn(this.state.mediaSelected);
-        this.state.mediaSelected.map((file) =>{
+        this.state.mediaSelected.forEach((file) =>{
             let tempgalleryList = this.state.galleryList.filter(item => item.photo !== file);
             this.setState({ galleryList : tempgalleryList })
           })
