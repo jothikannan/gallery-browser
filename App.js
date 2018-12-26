@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
             base64URI: null,
             galleryList: [
                 {
-                   photo:'http://farm3.static.flickr.com/2667/4072710001_f36316ddc7_b.jpg',
+                  photo:'http://farm3.static.flickr.com/2667/4072710001_f36316ddc7_b.jpg',
                     caption: 'Grotto of the Madonna',
                     },
                     {
@@ -34,6 +34,10 @@ export default class App extends Component<Props> {
                     {
                       photo:
                         'https://dspncdn.com/a1/media/originals/bf/c5/8d/bfc58dca85e651894c992c7ecc27c65b.jpg',
+                        caption: 'Beautiful Eyes',
+                    },{
+                      photo:
+                        'https://dspncdn.com/a1/media/originals/c0/ff/d3/c0ffd3c2bb155ebadcf8e93ccf1db3ac.jpg',
                         caption: 'Beautiful Eyes',
                     },
               ]
@@ -67,12 +71,10 @@ export default class App extends Component<Props> {
 
         deleteImageFile = () => {
         console.warn(this.state.mediaSelected);
-
-        this.state.mediaSelected.forEach((file) =>{
-          this.setState(prevState => ({
-            galleryList : prevState.galleryList.filter(item => !prevState.mediaSelected.includes(item.photo)),
-          }));
-         })
+        this.state.mediaSelected.map((file) =>{
+            let tempgalleryList = this.state.galleryList.filter(item => item.photo !== file);
+            this.setState({ galleryList : tempgalleryList })
+          })
         }
 
        renderDelete(){
